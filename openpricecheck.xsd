@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by Dansk Bibliotekscenter A/S (Dansk Bibliotekscenter A/S) -->
+<!-- All your id are belong to us -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" xmlns:opc="http://oss.dbc.dk/ns/openpricecheck" targetNamespace="http://oss.dbc.dk/ns/openpricecheck" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" schemaLocation="pricequery.xsd"/>
+	<xs:element name="priceCheckRequest">
+		<xs:annotation>
+			<xs:documentation>The service request</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="pricequery:PriceQuery"/>
+				<xs:element ref="opc:callback" minOccurs="0"/>
+				<xs:element ref="opc:outputType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="priceCheckResponse">
+		<xs:annotation>
+			<xs:documentation>The service request</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="opc:price" maxOccurs="unbounded"/>
+				<xs:element ref="opc:error"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="callback" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">If outputType=json.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="error" type="opc:errorType">
+		<xs:annotation>
+			<xs:documentation>Error messages</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="outputType" type="opc:outputTypeType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">E.g. xml, json or php.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="price">
+		<xs:annotation>
+			<xs:documentation>Price of item</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="pricequery:PriceQueryResponse"/>
+					<xs:element ref="opc:error"/>
+				</xs:choice>
+				<xs:element ref="opc:supplier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="supplier" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Name of supplier</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="errorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="item not found"/>
+			<xs:enumeration value="no answer from supplier"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="outputTypeType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The types of output that can be returned by the service.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="xml"/>
+			<xs:enumeration value="json"/>
+			<xs:enumeration value="php"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
