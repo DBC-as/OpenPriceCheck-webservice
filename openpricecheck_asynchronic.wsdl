@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:opc="http://oss.dbc.dk/ns/openpricecheck" xmlns:opcw="http://oss.dbc.dk/ns/openpricecheck_wsdl" targetNamespace="http://oss.dbc.dk/ns/openpricecheck_wsdl">
+    <wsdl:types>
+      <xs:schema elementFormDefault="qualified">
+			<xs:import schemaLocation="openpricecheck_asynchronic.xsd" namespace="http://oss.dbc.dk/ns/openpricecheck"/>
+      </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="priceCheckRequest">
+	   <wsdl:part name="body" element="opc:priceCheckRequest"/>
+    </wsdl:message>
+    <wsdl:message name="priceCheckResponse">
+	   <wsdl:part name="body" element="opc:priceCheckResponse"/>
+    </wsdl:message>
+    <wsdl:message name="priceCheckSessionIdResponse">
+	   <wsdl:part name="body" element="opc:priceCheckSessionIdResponse"/>
+    </wsdl:message>
+ 	<wsdl:message name="priceCheckSessionIdRequest">
+		<wsdl:part name="body" element="opc:priceCheckSessionIdRequest"/>
+ 	</wsdl:message>
+    <wsdl:portType name="priceCheckPortType">
+	   <wsdl:operation name="priceCheck">
+		   <wsdl:input message="opcw:priceCheckRequest"/>
+		   <wsdl:output message="opcw:priceCheckResponse"/>
+	   </wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="priceCheckAsynchronicPortType">
+		<wsdl:operation name="priceCheckAsynchronicAsk">
+			<wsdl:input message="opcw:priceCheckRequest"/>
+			<wsdl:output message="opcw:priceCheckSessionIdResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="priceCheckAsynchronicFetch">
+			<wsdl:input message="opcw:priceCheckSessionIdRequest"/>
+			<wsdl:output message="opcw:priceCheckResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="priceCheckSoapBinding" type="opcw:priceCheckPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="priceCheck">
+			<soap:operation soapAction="priceCheck"/>
+			<wsdl:input name="priceCheckRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="priceCheckResponse">
+				<soap:body use="literal"/>			
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="priceCheckAsynchronicSoapBinding" type="opcw:priceCheckAsynchronicPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="priceCheckAsynchronicAsk">
+			<soap:operation soapAction="priceCheckAsynchronicAsk"/>
+			<wsdl:input name="priceCheckRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="priceCheckSessionIdResponse">
+				<soap:body use="literal"/>			
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="priceCheckAsynchronicFetch">
+			<soap:operation soapAction="priceCheckAsynchronicFetch"/>
+			<wsdl:input name="priceCheckSessionIdRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="priceCheckResponse">
+				<soap:body use="literal"/>			
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="openPriceCheckService">
+		<wsdl:port name="priceCheck" binding="opcw:priceCheckSoapBinding">
+			<soap:address location="http://openpricecheck.addi.dk/0.1"/>
+		</wsdl:port>
+		<wsdl:port name="priceCheckAsynchronic" binding="opcw:priceCheckAsynchronicSoapBinding">
+			<soap:address location="http://openpricecheck.addi.dk/0.1"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
