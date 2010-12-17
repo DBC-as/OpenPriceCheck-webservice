@@ -5,7 +5,7 @@
 	<xs:import namespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" schemaLocation="pricequery.xsd"/>
 	<xs:element name="priceCheckRequest">
 		<xs:annotation>
-			<xs:documentation>The service request</xs:documentation>
+			<xs:documentation xml:lang="en">The service request</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -20,7 +20,7 @@
 	</xs:element>
 	<xs:element name="priceCheckResponse">
 		<xs:annotation>
-			<xs:documentation>The service response</xs:documentation>
+			<xs:documentation xml:lang="en">The service response</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:choice>
@@ -36,17 +36,17 @@
 	</xs:element>
 	<xs:element name="error" type="opc:errorType">
 		<xs:annotation>
-			<xs:documentation>Error messages</xs:documentation>
+			<xs:documentation xml:lang="en">Error messages</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="outputType" type="opc:outputTypeType">
 		<xs:annotation>
-			<xs:documentation xml:lang="en">E.g. xml, json or php.</xs:documentation>
+			<xs:documentation xml:lang="en">E.g. xml, json or php. If other or not set soap is default.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="price">
 		<xs:annotation>
-			<xs:documentation>Price of item</xs:documentation>
+			<xs:documentation xml:lang="en">Price of item(s)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -60,17 +60,17 @@
 	</xs:element>
 	<xs:element name="supplier" type="xs:string">
 		<xs:annotation>
-			<xs:documentation>Name of supplier. If used in request only the mentioned suppliers will be queried</xs:documentation>
+			<xs:documentation xml:lang="en">Name of supplier. If used in request only the mentioned supplier(s) will be queried</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="supplierCount" type="xs:integer">
 		<xs:annotation>
-			<xs:documentation xml:lang="en"/>
+			<xs:documentation xml:lang="en">Service will not time out before the number of suppliers set in supplierCount have responded, even if the timeOut limit set by requester has been exceeded</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="timeOut" type="xs:integer">
 		<xs:annotation>
-			<xs:documentation>Max time (in miliseconds) that requester wants to wait for response</xs:documentation>
+			<xs:documentation xml:lang="en">Max time (in miliseconds) that requester wants to wait for response</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:simpleType name="errorType">
