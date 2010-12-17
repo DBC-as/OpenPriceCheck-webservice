@@ -10,6 +10,9 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="pricequery:PriceQuery"/>
+				<xs:element ref="opc:supplier" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="opc:supplierCount" minOccurs="0"/>
+				<xs:element ref="opc:timeOut" minOccurs="0"/>
 				<xs:element ref="opc:callback" minOccurs="0"/>
 				<xs:element ref="opc:outputType" minOccurs="0"/>
 			</xs:sequence>
@@ -17,7 +20,7 @@
 	</xs:element>
 	<xs:element name="priceCheckResponse">
 		<xs:annotation>
-			<xs:documentation>The service request</xs:documentation>
+			<xs:documentation>The service response</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:choice>
@@ -57,7 +60,17 @@
 	</xs:element>
 	<xs:element name="supplier" type="xs:string">
 		<xs:annotation>
-			<xs:documentation>Name of supplier</xs:documentation>
+			<xs:documentation>Name of supplier. If used in request only the mentioned suppliers will be queried</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="supplierCount" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"/>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="timeOut" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Max time (in miliseconds) that requester wants to wait for response</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:simpleType name="errorType">
