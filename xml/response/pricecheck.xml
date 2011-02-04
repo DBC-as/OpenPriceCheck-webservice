@@ -27,6 +27,7 @@
             </pric:PriceQueryResponse>
             <open:error>?</open:error>
             <open:supplier>?</open:supplier>
+            <open:responseTime>?</open:responseTime>
          </open:price>
          <open:error>?</open:error>
       </open:priceCheckResponse>

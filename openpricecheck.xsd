@@ -54,9 +54,15 @@
 					<xs:element ref="pricequery:PriceQueryResponse"/>
 					<xs:element ref="opc:error"/>
 				</xs:choice>
+				<xs:element ref="opc:responseTime"/>
 				<xs:element ref="opc:supplier"/>
 			</xs:sequence>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="responseTime" type="xs:double">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Number of seconds the supplier took to send response</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 	<xs:element name="supplier" type="xs:string">
 		<xs:annotation>
@@ -77,6 +83,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="item not found"/>
 			<xs:enumeration value="no answer from supplier"/>
+			<xs:enumeration value="no request or supplier recognized"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="outputTypeType">
