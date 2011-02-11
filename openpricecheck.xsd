@@ -54,7 +54,7 @@
 					<xs:element ref="pricequery:PriceQueryResponse"/>
 					<xs:element ref="opc:error"/>
 				</xs:choice>
-				<xs:element ref="opc:responseTime"/>
+				<xs:element ref="opc:responseTime" minOccurs="0"/>
 				<xs:element ref="opc:supplier"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -84,6 +84,7 @@
 			<xs:enumeration value="item not found"/>
 			<xs:enumeration value="no answer from supplier"/>
 			<xs:enumeration value="no request or supplier recognized"/>
+			<xs:enumeration value="unknown supplier"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="outputTypeType">
