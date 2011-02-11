@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:open="http://oss.dbc.dk/ns/openpricecheck" xmlns:pric="http://biblstandard.dk/acq/serviceman/pricequery.wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <open:priceCheckRequest>
+         <pric:PriceQuery>
+            <Customer>
+               <CustomerIDType>?</CustomerIDType>
+               <CustomerID>?</CustomerID>
+            </Customer>
+            <!--1 or more repetitions:-->
+            <Material>
+               <MatIDType>?</MatIDType>
+               <MatID>?</MatID>
+            </Material>
+         </pric:PriceQuery>
+         <!--Zero or more repetitions:-->
+         <open:supplier>?</open:supplier>
+         <!--Optional:-->
+         <open:supplierCount>?</open:supplierCount>
+         <!--Optional:-->
+         <open:timeOut>?</open:timeOut>
+         <!--Optional:-->
+         <open:callback>?</open:callback>
+         <!--Optional:-->
+         <open:outputType>?</open:outputType>
+      </open:priceCheckRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
