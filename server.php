@@ -115,11 +115,13 @@ define('xDEBUG', FALSE);
             $pqr->supplier->_value = $con[$res_idx];
           } else {
             if ($this->validate['pricequery'] && empty($hosts[$con[$res_idx]]['skip_validate'])) {
+              $this->watch->start('validate');
               $xml = $this->objconvert->obj2xmlNS($obj);
               if (@ !$this->validate_xml($xml, $this->validate['pricequery'])) {
                 verbose::log(FATAL, 'PriceCheck:: Validate error for ' . $con[$res_idx] . ' record: ' . $xml);
                 $pqr->error->_value = 'item not found';
               }
+              $this->watch->stop('validate');
             }
             if (empty($pqr->error)) {
               //$pqr->PriceQueryResponse = $this->objconvert->set_obj_namespace($obj->PriceQueryResponse, $this->xmlns['pric']);
