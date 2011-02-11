@@ -1,80 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl"
-	xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
-	xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl"
-	xmlns="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="unqualified"
-	attributeFormDefault="unqualified">
-	<import namespace="http://www.w3.org/2003/05/soap-encoding" schemaLocation="http://www.w3.org/2003/05/soap-encoding"/>
-<simpleType name="CustomerIDTypeType">
-   <restriction base="xsd:string">
-    <enumeration value="ISIL"/>
-    <enumeration value="EAN"/>
-    <enumeration value="OtherID"/>
-   </restriction>
-  </simpleType>
-  <simpleType name="MatIDTypeType">
-   <restriction base="xsd:string">
-    <enumeration value="FAUST"/>
-    <enumeration value="ISBN10"/>
-    <enumeration value="ISBN13"/>
-    <enumeration value="ISSN"/>
-    <enumeration value="ISMN"/>
-    <enumeration value="EAN"/>
-   </restriction>
-  </simpleType>
-  <simpleType name="PriceTypeType">
-   <restriction base="xsd:string">
-    <enumeration value="LockedPrice"/>
-    <enumeration value="ExpectedPrice"/>
-    <enumeration value="EstimatedPrice"/>
-    <enumeration value="NetPricePublisher"/>
-    <enumeration value="NoPriceYet"/>
-    <enumeration value="NoDelivery"/>
-   </restriction>
-  </simpleType>
-  <complexType name="PriceSpecificationType">
-   <sequence>
-    <element name="PriceType" type="pricequery:PriceTypeType" minOccurs="1" maxOccurs="1"/>
-    <element name="Currency" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-    <element name="Amount" type="xsd:double" minOccurs="0" maxOccurs="1"/>
-    <element name="ValidToDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-   </sequence>
-  </complexType>
-  <complexType name="CustomerType">
-   <sequence>
-    <element name="CustomerIDType" type="pricequery:CustomerIDTypeType" minOccurs="1" maxOccurs="1"/>
-    <element name="CustomerID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-   </sequence>
-  </complexType>
-  <complexType name="MaterialType">
-   <sequence>
-    <element name="MatIDType" type="pricequery:MatIDTypeType" minOccurs="1" maxOccurs="1"/>
-    <element name="MatID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-   </sequence>
-  </complexType>
-  <complexType name="MaterialPriceType">
-   <sequence>
-    <element name="Material" type="pricequery:MaterialType" minOccurs="1" maxOccurs="1"/>
-    <element name="Price" type="pricequery:PriceSpecificationType" minOccurs="1" maxOccurs="unbounded"/>
-   </sequence>
-  </complexType>
-  <element name="PriceQuery">
-   <complexType>
-    <sequence>
-     <element name="Customer" type="pricequery:CustomerType" minOccurs="1" maxOccurs="1"/>
-     <element name="Material" type="pricequery:MaterialType" minOccurs="1" maxOccurs="unbounded"/>
-    </sequence>
-   </complexType>
-  </element>
-  <element name="PriceQueryResponse">
-   <complexType>
-    <sequence>
-     <element name="MaterialPrice" type="pricequery:MaterialPriceType" minOccurs="1" maxOccurs="unbounded"/>
-    </sequence>
-   </complexType>
-  </element>
-</schema>
+<xsd:schema xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.w3.org/2003/05/soap-encoding" schemaLocation="http://www.w3.org/2003/05/soap-encoding"/>
+	<xsd:simpleType name="CustomerIDTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ISIL"/>
+			<xsd:enumeration value="EAN"/>
+			<xsd:enumeration value="OtherID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MatIDTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FAUST"/>
+			<xsd:enumeration value="ISBN10"/>
+			<xsd:enumeration value="ISBN13"/>
+			<xsd:enumeration value="ISSN"/>
+			<xsd:enumeration value="ISMN"/>
+			<xsd:enumeration value="EAN"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PriceTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LockedPrice"/>
+			<xsd:enumeration value="ExpectedPrice"/>
+			<xsd:enumeration value="EstimatedPrice"/>
+			<xsd:enumeration value="NetPricePublisher"/>
+			<xsd:enumeration value="NoPriceYet"/>
+			<xsd:enumeration value="NoDelivery"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="PriceSpecificationType">
+		<xsd:sequence>
+			<xsd:element name="PriceType" type="pricequery:PriceTypeType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Currency" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Amount" type="xsd:double" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ValidToDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CustomerType">
+		<xsd:sequence>
+			<xsd:element name="CustomerIDType" type="pricequery:CustomerIDTypeType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="CustomerID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MaterialType">
+		<xsd:sequence>
+			<xsd:element name="MatIDType" type="pricequery:MatIDTypeType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="MatID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MaterialPriceType">
+		<xsd:sequence>
+			<xsd:element name="Material" type="pricequery:MaterialType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Price" type="pricequery:PriceSpecificationType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="PriceQuery">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Customer" type="pricequery:CustomerType" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="Material" type="pricequery:MaterialType" minOccurs="1" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PriceQueryResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="MaterialPrice" type="pricequery:MaterialPriceType" minOccurs="1" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
