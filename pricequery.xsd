@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xsd:import namespace="http://www.w3.org/2003/05/soap-encoding" schemaLocation="http://www.w3.org/2003/05/soap-encoding"/>
+	<xsd:import namespace="http://www.w3.org/2003/05/soap-encoding" schemaLocation="soap-encoding.xsd"/>
 	<xsd:simpleType name="CustomerIDTypeType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="ISIL"/>
