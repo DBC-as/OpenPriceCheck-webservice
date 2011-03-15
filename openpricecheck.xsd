@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by Dansk Bibliotekscenter A/S (Dansk Bibliotekscenter A/S) -->
-<!-- All your id are belong to us -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" xmlns:opc="http://oss.dbc.dk/ns/openpricecheck" targetNamespace="http://oss.dbc.dk/ns/openpricecheck" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" schemaLocation="pricequery.xsd"/>
 	<xs:element name="priceCheckRequest">
