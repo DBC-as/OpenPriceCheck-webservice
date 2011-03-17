@@ -2,7 +2,7 @@
 
 [setup]
 
-version = 1.0
+version = 1.1
 
 ; in_house_domain may use ?ShowInfo and use create_sample form
 ;in_house_domain = .dbc.dk
@@ -13,11 +13,12 @@ version = 1.0
 ; validate
 ;validate[request] = openpricecheck.xsd
 ;validate[response] = openpricecheck.xsd
-validate[pricequery] = pricequery.xsd
+validate[pricequery] = pricequery_supplier.xsd
 
 ; soapActions and their corresponding request structure
 ; Can be found in the wsdl but is stated here for convenience
 soapAction[priceCheck] = priceCheckRequest
+soapAction[getSuppliers] = getSuppliersRequest
 
 ; prefixes and namespaces
 xmlns[opc] = http://oss.dbc.dk/ns/openpricecheck
@@ -112,6 +113,10 @@ action[priceCheck][PriceQuery][Material][] = MatIDType
 action[priceCheck][PriceQuery][Material][] = MatID
 action[priceCheck][] = callback
 action[priceCheck][] = outputType
+
+action[getSuppliers][] = callback
+action[getSuppliers][] = outputType
+
 
 [howru]
 ;test[] = priceCheck

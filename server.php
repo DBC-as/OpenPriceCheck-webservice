@@ -47,6 +47,7 @@ define('xDEBUG', FALSE);
     if (!$this->aaa->has_right('openpricecheck', 500))
       $pcr->error->_value = 'authentication_error';
     else {
+      $this->curl = new curl();
       if (is_array($param->supplier))
         foreach ($param->supplier as $supl)
           $supplier[strtolower($supl->_value)] = $supl->_value;
@@ -124,9 +125,8 @@ define('xDEBUG', FALSE);
               $this->watch->stop('validate');
             }
             if (empty($pqr->error)) {
-              //$pqr->PriceQueryResponse = $this->objconvert->set_obj_namespace($obj->PriceQueryResponse, $this->xmlns['pric']);
-              $pqr->PriceQueryResponse = &$obj->PriceQueryResponse;;
-              //$pqr->PriceQueryResponse->_namespace = $this->xmlns['pric'];
+              $pqr->PriceQueryResponse = $this->objconvert->set_obj_namespace($obj->PriceQueryResponse, $this->xmlns['pric']);
+              //$pqr->PriceQueryResponse = &$obj->PriceQueryResponse;;
             }
             $pqr->responseTime->_value = strval($curl_err[$res_idx]['total_time']);
             $pqr->supplier->_value = $con[$res_idx];
@@ -163,10 +163,39 @@ if (xDEBUG) echo '<hr />';
     return $ret;
   }
 
+
+
+ /** \brief getSuppliers - 
+  *
+  * Request: None
+  *
+  * Response: One or more suplliers
+  */
+  public function getSuppliers($param) {
+define('xDEBUG', FALSE);
+    $ret->getSuppliersResponse->_namespace = 'http://oss.dbc.dk/ns/openpricecheck';
+    $gsr = &$ret->getSuppliersResponse->_value;
+    if (!$this->aaa->has_right('openpricecheck', 500))
+      $pcr->error->_value = 'authentication_error';
+    else {
+      $hosts = $this->config->get_value('supplier', 'setup');
+      $suppl->_namespace = 'http://oss.dbc.dk/ns/openpricecheck';
+      foreach ($hosts as $host_id => $host) {
+        $suppl->_value = $host_id;
+        $gsr->supplier[] = $suppl;
+      }
+    }
+    if (xDEBUG) { var_dump($param); var_dump($pcr); die('test'); }
+    return $ret;
+  }
+
+
+
+ /** \brief constructor
+  *
+  */
   public function __construct(){
     webServiceServer::__construct('openpricecheck.ini');
-
-    $this->curl = new curl();
   }
 
 }
