@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by Dansk Bibliotekscenter A/S (Dansk Bibliotekscenter A/S) -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by Dansk Bibliotekscenter A/S (Dansk Bibliotekscenter A/S) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pricequery="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" xmlns:opc="http://oss.dbc.dk/ns/openpricecheck" targetNamespace="http://oss.dbc.dk/ns/openpricecheck" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://biblstandard.dk/acq/serviceman/pricequery.wsdl" schemaLocation="pricequery.xsd"/>
 	<xs:element name="priceCheckRequest">
@@ -24,6 +24,28 @@
 		<xs:complexType>
 			<xs:choice>
 				<xs:element ref="opc:price" maxOccurs="unbounded"/>
+				<xs:element ref="opc:error"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getSuppliersRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The service request for information about which suppliers the service ask for prices</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="opc:callback" minOccurs="0"/>
+				<xs:element ref="opc:outputType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getSuppliersResponse">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The service response</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="opc:supplier" maxOccurs="unbounded"/>
 				<xs:element ref="opc:error"/>
 			</xs:choice>
 		</xs:complexType>
@@ -65,7 +87,7 @@
 	</xs:element>
 	<xs:element name="supplier" type="xs:string">
 		<xs:annotation>
-			<xs:documentation xml:lang="en">Name of supplier. If used in request only the mentioned supplier(s) will be queried</xs:documentation>
+			<xs:documentation xml:lang="en">Name of supplier. If used in priceCheckRequest only the mentioned supplier(s) will be queried</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="supplierCount" type="xs:integer">
@@ -84,6 +106,7 @@
 			<xs:enumeration value="no answer from supplier"/>
 			<xs:enumeration value="no request or supplier recognized"/>
 			<xs:enumeration value="unknown supplier"/>
+			<xs:enumeration value="no suppliers found"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="outputTypeType">
