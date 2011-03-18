@@ -179,10 +179,11 @@ define('xDEBUG', FALSE);
       $pcr->error->_value = 'authentication_error';
     else {
       $hosts = $this->config->get_value('supplier', 'setup');
-      $suppl->_namespace = 'http://oss.dbc.dk/ns/openpricecheck';
       foreach ($hosts as $host_id => $host) {
+        $suppl->_namespace = 'http://oss.dbc.dk/ns/openpricecheck';
         $suppl->_value = $host_id;
         $gsr->supplier[] = $suppl;
+        unset($suppl);
       }
     }
     if (xDEBUG) { var_dump($param); var_dump($pcr); die('test'); }
