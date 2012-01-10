@@ -65,7 +65,7 @@ supplier[ifs][url] = http://somepriceservice.dk
 supplier[ifs][skip_validate] = 1
 supplier[saxo][url] = http://anotherpriceservice.dk
 supplier[saxo][soapAction] = http://biblstandard.dk/acq/serviceman/pricequery.wsdl/PriceQuery
-supplier[saxo][namespace] = http://biblstandard.dk/acq/serviceman/pricequery.wsdl
+supplier[saxo]['namespace'] = http://biblstandard.dk/acq/serviceman/pricequery.wsdl
 supplier[saxo][skip_validate] = 0
 
 
